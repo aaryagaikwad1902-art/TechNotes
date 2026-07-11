@@ -3,16 +3,24 @@ TechNotes is a full-stack task and notes management application built on the MER
 
 ##Tech Stack -
 Backend: Node.js, Express 5, MongoDB (Atlas), Mongoose
+
 Frontend: React, Redux Toolkit, RTK Query
+
 Auth: JWT-based access/refresh token flow with httpOnly cookies
+
 Deployment: Render.com
 
 ##Key Features -
 1.JWT authentication with short-lived access tokens and refresh token rotation for persistent, secure sessions
+
 2.Role-based access control enforced at both the API and UI layer
+
 3.RTK Query for normalized caching, automatic re-fetching, and optimistic updates — no manual loading-state juggling
+
 4.RESTful API with clean separation of concerns (controllers, models, routes, middleware)
+
 5.Centralized error handling and request logging for easier debugging in production
+
 6.Fully responsive UI
 
 ##Architecture Notes -
