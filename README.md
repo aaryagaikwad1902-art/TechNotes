@@ -1,30 +1,45 @@
-##TechNotes - 
+TechNotes — Frontend 
 TechNotes is a full-stack task and notes management application built on the MERN stack, designed around real-world team workflows: role-based access, secure authentication, and a responsive interface.
 
-##Tech Stack -
-Backend: Node.js, Express 5, MongoDB (Atlas), Mongoose
-
-Frontend: React, Redux Toolkit, RTK Query
-
-Auth: JWT-based access/refresh token flow with httpOnly cookies
-
+Tech Stack:
+Framework: React
+State Management: Redux Toolkit
+Data Fetching/Caching: RTK Query
+Auth (client-side): JWT access token handling with httpOnly cookie–based refresh flow
 Deployment: Render.com
 
-##Key Features -
-1.JWT authentication with short-lived access tokens and refresh token rotation for persistent, secure sessions
+Key Features:
+1.RTK Query for all server-state management — normalized caching, automatic re-fetching, and optimistic updates, with no manual loading-state juggling.
+2.Client-side protected routes, synced with the refresh token cycle to keep sessions persistent and secure.
+3.Role-based UI rendering — components and routes adapt based on user permissions, enforced alongside API-level checks
+Fully responsive UI across devices.
+4.Clean component architecture — UI components stay focused on presentation, with all data-fetching logic abstracted into RTK Query hooks.
 
-2.Role-based access control enforced at both the API and UI layer
+Architecture Notes:
+The frontend keeps components decoupled from data-fetching concerns by centralizing all server-state management in RTK Query. Protected routes are handled client-side and kept in sync with the access/refresh token cycle managed by the backend, so session expiry and renewal happen transparently to the user.
 
-3.RTK Query for normalized caching, automatic re-fetching, and optimistic updates — no manual loading-state juggling
+Why This Project:
+TechNotes was built to go beyond tutorial-level CRUD apps. On the frontend specifically, that meant handling token refresh edge cases gracefully in the UI, enforcing role-based permission boundaries without duplicating backend logic, and keeping the client resilient while working against a two-service (client + server) deployment.
 
-4.RESTful API with clean separation of concerns (controllers, models, routes, middleware)
 
-5.Centralized error handling and request logging for easier debugging in production
 
-6.Fully responsive UI
-
-##Architecture Notes -
-Backend follows MVC with Mongoose enforcing schema-level data integrity. Frontend uses RTK Query for all server-state management, keeping components focused on UI rather than data-fetching logic. Protected routes are handled client-side, synced with the refresh token cycle.
-
-##Why This Project -
-TechNotes was built to go beyond tutorial-level CRUD apps — it tackles the harder, less glamorous parts of full-stack development: token refresh edge cases, role permission boundaries, schema relationships across collections, and deploying a two-service (client + server) app to a single host.
+Folder structure:
+TechNotes/                    # React Client Application(FRONTEND)
+├── public/                   # Static browser assets (favicon, index.html)
+├── src/                      # Application source code
+│   ├── components/           # Reusable, shared UI components
+│   ├── config/               # App-level configuration (roles, constants, etc.)
+│   ├── features/             # Feature-based modules (Redux slices, RTK Query API slices)
+│   ├── hooks/                # Custom React hooks
+│   ├── img/                  # Image assets
+│   ├── App.css               # Global app styles
+│   ├── App.js                # Main React component & layout
+│   ├── App.test.js           # App-level test
+│   ├── index.css             # Root stylesheet
+│   ├── index.js              # React DOM entry point
+│   └── setupTests.js         # Test environment setup (Jest/RTL)
+├── .env                      # Frontend local environment variables
+├── .gitignore                # Git exclusion rules (includes node_modules/)
+├── package.json              # Frontend dependencies and scripts
+├── package-lock.json         # Locked dependency versions
+└── README.md                 # Project documentation
